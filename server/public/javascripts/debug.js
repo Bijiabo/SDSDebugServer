@@ -12,6 +12,15 @@ var deviceData = [
     }
 ];
 
+var addDataItem = function (key, value) {
+    deviceData.push({
+        key: key, value: value
+    });
+};
+
+addDataItem("WorkTime", "100");
+addDataItem("KG_Start", "0");
+
 var app = new Vue({
     el: '#app',
     data: {
