@@ -111,7 +111,12 @@ var app = new Vue({
                         for (var i=0,len=self.deviceData.length; i<len; i++) {
                             var item = self.deviceData[i];
                             if (command[item.key]) {
-                                self.deviceData[i].value = command[item.key];
+                                if (command[item.key].value) {
+                                    self.deviceData[i].value = command[item.key].value;
+                                } else {
+                                    self.deviceData[i].value = command[item.key];
+                                }
+                                
                             }
                         }
                         self.uploadDeviceStatus();
