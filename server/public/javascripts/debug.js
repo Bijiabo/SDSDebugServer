@@ -30,7 +30,9 @@ var fotileKeys = ["cur_windVolume", "WindSpeed", "WorkStatus", "CleanSwitch", "L
 deviceType["油烟机"] = fotileKeys;
 
 // 消毒柜 TRD
-var dcKeys = ["WorkStatus", "ClockSwitch", "Switch", "WorkMode", "AppointSwitch", "Appoint_StartTime", "CabinetStatus", "UpperRoom_Humi", "UpperRoom_Temp", "LowerRoom_Temp", "LeftTime_Hour", "LeftTime_Minute", "error"];
+var dcKeys = ["WorkStatus", "ClockSwitch", "Switch", "WorkMode", "AppointSwitch", "Appoint_StartTime", "CabinetStatus", "UpperRoom_Humi", "UpperRoom_Temp", "LowerRoom_Temp", "LeftTime_Hour", "LeftTime_Minute", "error",
+    'AppointSwitch_Hour', 'AppointSwitch_Minute'
+];
 deviceType["消毒柜"] = dcKeys;
 
 for (var i=0,len=fotileKeys.length; i<len; i++) {
@@ -51,7 +53,7 @@ var app = new Vue({
     },
     methods: {
         uploadDeviceStatus: function () {
-            console.log("run -> uploadDeviceStatus");
+            console.log(new Date() + " -> uploadDeviceStatus");
             this.sendObject(this.packagedData);
         },
         addRow: function () {
@@ -99,7 +101,7 @@ var app = new Vue({
             };
     
             this.ws.onmessage = function(evt) {
-                console.log( "Received Message: " + evt.data);
+                console.log(new Date() + " Received Message: " + evt.data);
         
                 try {
                     var data = JSON.parse(evt.data);
@@ -112,7 +114,9 @@ var app = new Vue({
                                 self.deviceData[i].value = command[item.key];
                             }
                         }
+                        self.uploadDeviceStatus();
                     }
+                    
                 } catch (error) {
             
                 }
