@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设备上报数据对照 - for 森太油烟机</title>
+    <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="../stylesheets/debug.css">
+    <script src="../javascripts/vue.js"></script>
+</head>
+<body>
+
+<div id="app" class="">
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse mb-4">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">Check Difference</a>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">for Setir</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">0.0.1</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- TRD 表格呈现-->
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>#</td>
+            <td>log</td>
+            <td>difference</td>
+        </tr>
+        </thead>
+        <tbody>
+        <template v-for="(item, index) in deviceData">
+            <tr>
+                <td>{{index}}</td>
+                <td>
+                    <pre>{{item}}</pre>
+                </td>
+                <td>
+                    <template v-if="index>0">
+                        <pre>{{difference[index-1]}}</pre>
+                    </template>
+                </td>
+            </tr>
+        </template>
+
+        </tbody>
+    </table>
+
+    <div class="row bottom-bar">
+        <div class="col-sm-6 col-xs-12 col-xl-6 text-left">
+            <button class="btn btn-secondary" @click="toggleDebugMode">Toggle debug mode</button>
+            <button class="btn btn-secondary" @click="clearData">Clear</button>
+        </div>
+        <div class="col-sm-6 col-xs-12 col-xl-6 text-right">
+            <!--<button class="btn btn-primary" @click="uploadDeviceStatus">Upload device status</button>-->
+        </div>
+    </div>
+
+
+    <template v-if="debugMode">
+        <hr>
+        <h4>data</h4>
+        <pre>{{deviceData}}</pre>
+    </template>
+
+
+</div>
+
+<script src="../javascripts/check_device_data_difference.js"></script>
+
+</body>
+</html>

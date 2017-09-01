@@ -26,7 +26,11 @@ var addDataItem = function (key, value) {
 var deviceType = {};
 
 // 油烟机 TRD
-var fotileKeys = ["cur_windVolume", "WindSpeed", "WorkStatus", "CleanSwitch", "LightSwitch", "Switch", "elecMachineMode", "CookSwitch", "CookTime_set", "CookTime_left", "PowerVolume", "RoomTemp", "DelayedSwitch"];
+var fotileKeys = ["cur_windVolume", "WindSpeed", "WorkStatus", "CleanSwitch", "LightSwitch", "Switch", "elecMachineMode", "CookSwitch", "CookTime_set", "CookTime_left", "PowerVolume", "RoomTemp", "DelayedSwitch",
+    'DoubleMachine',
+    'RightMachine',
+    'LeftMachine',
+];
 deviceType["油烟机"] = fotileKeys;
 
 // 消毒柜 TRD
@@ -53,8 +57,12 @@ var app = new Vue({
     },
     methods: {
         uploadDeviceStatus: function () {
-            console.log(new Date() + " -> uploadDeviceStatus");
-            this.sendObject(this.packagedData);
+            var self = this;
+            setTimeout(function () {
+                console.log(new Date() + " -> uploadDeviceStatus");
+                self.sendObject(self.packagedData);
+            }, 1500);
+            
         },
         addRow: function () {
             this.deviceData.push({
