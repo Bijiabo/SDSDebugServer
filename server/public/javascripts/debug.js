@@ -44,6 +44,36 @@ for (var i=0,len=fotileKeys.length; i<len; i++) {
     addDataItem(item, "0");
 }
 
+// 
+var waterHeaterKeys = [
+    "ErrorCode",
+    "Switch",
+    "Temperature",
+    "HeatStatus",
+    "Timing_Set",
+    "ChildLock",
+    "WaterInflux_Set",
+    "ChangeCapacity",
+    "CurrentTemp",
+    "AddPresure",
+    "ZeroColdWater",
+    "Timing_LeftTime",
+    "TotalGas",
+    "TotalWater",
+    "CO_Warnning",
+    "FanStatus",
+    "FlowStatus",
+    "FireStatus",
+    "WaterPumpStatus",
+    "BathwaterEnough",
+    "Machine_ChangeCapacity",
+    "Change1",
+    "change2",
+    "ShowerMode",
+    "CUID",
+  ]
+  deviceType["热水器"] = waterHeaterKeys;
+
 
 var app = new Vue({
     el: '#app',
